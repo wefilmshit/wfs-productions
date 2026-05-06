@@ -1,18 +1,54 @@
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 
-const LOGIN_FALLBACK_URL = import.meta.env.VITE_IPE_LOGIN_FALLBACK_URL || 'https://intelligentproduction.io/login'
+const IPE_PUBLIC_ORIGIN =
+  import.meta.env.VITE_IPE_PUBLIC_ORIGIN ||
+  (['127.0.0.1', 'localhost'].includes(window.location.hostname)
+    ? 'http://127.0.0.1:5175'
+    : 'https://intelligentproduction.io')
+const AUTH_HANDOFF_START_URL =
+  import.meta.env.VITE_IPE_AUTH_HANDOFF_START_URL ||
+  'https://inqwtstopucpxfnuisus.supabase.co/functions/v1/ipe-auth-handoff-start'
 const IPE_OAUTH_GOOGLE_URL =
   import.meta.env.VITE_IPE_OAUTH_GOOGLE_URL ||
-  'https://intelligentproduction.io/auth/start?provider=google&from=wfs'
+  `${IPE_PUBLIC_ORIGIN}/auth/start?provider=google&from=wfs`
 const IPE_OAUTH_APPLE_URL =
   import.meta.env.VITE_IPE_OAUTH_APPLE_URL ||
-  'https://intelligentproduction.io/auth/start?provider=apple&from=wfs'
+  `${IPE_PUBLIC_ORIGIN}/auth/start?provider=apple&from=wfs`
 const IPE_LOGO =
   'https://inqwtstopucpxfnuisus.supabase.co/storage/v1/object/public/company-logos/intelligent-production-engine/ipe-black.png'
 
 export function SiteNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loginError, setLoginError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleLoginSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setLoginError('')
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch(AUTH_HANDOFF_START_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
+      const payload = await response.json().catch(() => ({}))
+
+      if (!response.ok || !payload.redirectUrl) {
+        throw new Error(payload.error || 'Unable to sign in.')
+      }
+
+      window.location.href = payload.redirectUrl
+    } catch {
+      setLoginError('Could not sign in. Check your email and password and try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <header className="site-header">
@@ -94,7 +130,36 @@ export function SiteNav() {
             </button>
             <img src={IPE_LOGO} alt="Intelligent Production Engine" />
             <h2 id="login-modal-title">Sign in</h2>
-            <p>WFS account access runs through Intelligent Production Engine.</p>
+            <p>Sign in happens on Intelligent Production Engine.</p>
+            <form className="login-modal-form" onSubmit={handleLoginSubmit}>
+              <label>
+                <span>Email</span>
+                <input
+                  type="email"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                />
+              </label>
+              <label>
+                <span>Password</span>
+                <input
+                  type="password"
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  required
+                />
+              </label>
+              {loginError && <p className="login-modal-error">{loginError}</p>}
+              <button className="login-modal-primary" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Signing in...' : 'Sign in'}
+              </button>
+            </form>
+            <div className="login-modal-divider">
+              <span>or</span>
+            </div>
             <div className="login-oauth-stack" aria-label="OAuth sign in options">
               <a className="login-oauth-button" href={IPE_OAUTH_GOOGLE_URL} aria-label="Continue with Google">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -110,9 +175,6 @@ export function SiteNav() {
                 </svg>
               </a>
             </div>
-            <a className="login-modal-primary" href={LOGIN_FALLBACK_URL}>
-              Open sign in
-            </a>
             <p>
               Need access? <a href="/join">Request an invite</a>
             </p>

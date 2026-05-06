@@ -449,41 +449,6 @@ p {
   line-height: 1.25;
 }
 
-.powered-by {
-  border-top: 1px solid var(--divider);
-  padding-top: 16px;
-  display: grid;
-  gap: 12px;
-}
-
-.powered-by p {
-  margin: 0;
-  color: var(--muted);
-  font: 650 0.72rem/1 var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.powered-by div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 18px;
-}
-
-.powered-by a {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  color: var(--ink);
-  text-decoration: none;
-  font: 650 0.95rem/1 var(--sans);
-}
-
-.powered-by a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
 .founder-story {
   margin-block: 2px 0;
 }

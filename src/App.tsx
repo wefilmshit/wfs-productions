@@ -81,13 +81,6 @@ const AI_TOOLS = [
   },
 ]
 
-const POWERED_BY = [
-  { name: 'Anthropic', href: 'https://www.anthropic.com' },
-  { name: 'Gemini', href: 'https://gemini.google.com' },
-  { name: 'OpenAI', href: 'https://openai.com' },
-  { name: 'Twelve Labs', href: 'https://www.twelvelabs.io' },
-]
-
 function TapeWord({ width = '2.2em' }: { width?: string }) {
   return (
     <span
@@ -153,21 +146,6 @@ function ModelSection() {
       <p>
         Better, faster, with less bull<TapeWord />.
       </p>
-    </section>
-  )
-}
-
-function PoweredBy() {
-  return (
-    <section className="powered-by" aria-label="Powered by">
-      <p>Powered by</p>
-      <div>
-        {POWERED_BY.map((partner) => (
-          <a key={partner.name} href={partner.href} target="_blank" rel="noreferrer">
-            {partner.name}
-          </a>
-        ))}
-      </div>
     </section>
   )
 }
@@ -259,7 +237,6 @@ function ToolsPage() {
         ))}
       </section>
 
-      <PoweredBy />
     </main>
   )
 }
@@ -576,7 +553,6 @@ function App() {
           <Hero />
           <Manifesto />
           <ModelSection />
-          <PoweredBy />
         </main>
       )}
       <SiteFooter />
