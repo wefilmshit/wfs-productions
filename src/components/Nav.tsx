@@ -8,12 +8,14 @@ const IPE_PUBLIC_ORIGIN =
 const AUTH_HANDOFF_START_URL =
   import.meta.env.VITE_IPE_AUTH_HANDOFF_START_URL ||
   'https://inqwtstopucpxfnuisus.supabase.co/functions/v1/ipe-auth-handoff-start'
-const IPE_OAUTH_GOOGLE_URL =
-  import.meta.env.VITE_IPE_OAUTH_GOOGLE_URL ||
-  `${IPE_PUBLIC_ORIGIN}/auth/start?provider=google&from=wfs`
-const IPE_OAUTH_APPLE_URL =
-  import.meta.env.VITE_IPE_OAUTH_APPLE_URL ||
-  `${IPE_PUBLIC_ORIGIN}/auth/start?provider=apple&from=wfs`
+const SUPABASE_AUTH_URL =
+  import.meta.env.VITE_SUPABASE_AUTH_URL ||
+  'https://inqwtstopucpxfnuisus.supabase.co/auth/v1'
+const IPE_AUTH_CALLBACK_URL = `${IPE_PUBLIC_ORIGIN}/auth/callback`
+const buildOAuthUrl = (provider: 'google' | 'apple') =>
+  `${SUPABASE_AUTH_URL}/authorize?provider=${provider}&redirect_to=${encodeURIComponent(IPE_AUTH_CALLBACK_URL)}`
+const IPE_OAUTH_GOOGLE_URL = buildOAuthUrl('google')
+const IPE_OAUTH_APPLE_URL = buildOAuthUrl('apple')
 const IPE_LOGO =
   'https://inqwtstopucpxfnuisus.supabase.co/storage/v1/object/public/company-logos/intelligent-production-engine/ipe-black.png'
 

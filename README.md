@@ -22,6 +22,6 @@ Copy `.env.example` to `.env.local` for local overrides.
 Key public env vars:
 
 - `VITE_WFS_NYLAS_BOOKING_URL`: public booking link for the contact CTA.
+- `VITE_IPE_PUBLIC_ORIGIN`: Intelligent Production Engine public origin used for auth callbacks.
 - `VITE_IPE_LOGIN_FALLBACK_URL`: Intelligent Production Engine login URL.
-- `VITE_IPE_OAUTH_GOOGLE_URL`: Google auth start URL for IPE.
-- `VITE_IPE_OAUTH_APPLE_URL`: Apple auth start URL for IPE.
+- `VITE_SUPABASE_AUTH_URL`: Supabase GoTrue auth URL used to launch Google/Apple OAuth.
