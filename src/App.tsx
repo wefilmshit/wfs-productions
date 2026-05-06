@@ -53,7 +53,7 @@ const AI_TOOLS = [
     title: 'Intelligent Production Engine',
     job: 'Modernized back office for real production work.',
     description:
-      'Paperwork, approvals, budgets, and moving parts, built by producers who know where jobs actually slow down.',
+      'A new online production platform. This is our new online work desk to allow you to handle everything from pitches, prepro, production, and wrap, integrated with AI.',
     builtFor: 'EPs, line producers, production teams',
     href: 'https://intelligentproduction.io',
     logo: 'https://inqwtstopucpxfnuisus.supabase.co/storage/v1/object/public/company-logos/intelligent-production-engine/ipe-black.png',
@@ -61,9 +61,9 @@ const AI_TOOLS = [
   },
   {
     title: 'Intelligent Creative Engine',
-    job: 'Director search based on the work, not the roster page.',
+    job: 'An online AI director database.',
     description:
-      'A smarter way to get the right jobs in front of the right independent directors, using actual creative work as proof.',
+      'A smarter way to get the right jobs in front of the right independent directors.',
     builtFor: 'Agency producers, brands, directors',
     href: 'https://intelligentcreative.io',
     logo: 'https://intelligentcreative.io/Intelligent_Creative_Engine_Black.png',
@@ -73,7 +73,7 @@ const AI_TOOLS = [
     title: 'WFS Budget',
     job: 'Free production budgeting. No spreadsheet theater.',
     description:
-      'Fast, clean production budgeting that keeps the numbers usable without turning the whole job into admin cosplay.',
+      'A fast, free, clean AICP production budgeting tool that just works. Also compatible with Claude Code and our cloud sync.',
     builtFor: 'Freelance producers, directors, small teams',
     href: 'https://wfsbudget.com',
     logo: wfsBudgetLogo,
@@ -114,6 +114,7 @@ function Manifesto() {
       <p>
         WFS is a production company that knows it's not the product. The director is. The
         line producer is. The crew is. So we built the infrastructure around them and for them.
+        <br />
         We handle the boring <TapeWord />.
       </p>
       <p>No gatekeeping. No overhead. No ego.</p>
@@ -141,7 +142,7 @@ function ModelSection() {
       </p>
       <p>
         With WFS, the team you award the job to is the same team with you every step of the way.
-        No sales layer calling the shots from behind a desk.
+        No sales team calling the shots from behind a desk.
       </p>
       <p>
         Better, faster, with less bull<TapeWord />.
