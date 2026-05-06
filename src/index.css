@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&display=swap");
+
+:root {
+  --paper: #fafaf7;
+  --ink: #111111;
+  --secondary: #4a4a4f;
+  --muted: #8a8a90;
+  --accent: #f97316;
+  --accent-hover: #ea580c;
+  --divider: rgba(10, 10, 11, 0.08);
+  --divider-dark: rgba(17, 17, 17, 0.18);
+
+  --sans: Geist, "Geist", Arial, sans-serif;
+  --display: "Instrument Serif", "Instrument Serif", Georgia, serif;
+  --mono: "Geist Mono", "Geist Mono", ui-monospace, Consolas, monospace;
+
+  --btn-radius: 6px;
+  --card-radius: 6px;
+  --input-radius: 2px;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.15px;
+  color: var(--ink);
+  background: var(--paper);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  color: var(--ink);
+  margin: 0;
+}
+
+h1 {
+  font-style: italic;
+}
+
+p {
+  margin: 0;
+  color: var(--secondary);
+}
+
+a {
+  color: inherit;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
