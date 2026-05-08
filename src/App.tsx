@@ -1,5 +1,5 @@
 import './App.css'
-import { createElement, useEffect, useRef } from 'react'
+import { createElement, useEffect, useRef, useState } from 'react'
 import { blackTapeLogo, wfsBudgetLogo } from './constants/assets'
 import dubayLogo from './assets/dubay-skyblue-main.png'
 import { SiteFooter } from './components/Footer'
@@ -18,7 +18,17 @@ const BOOKING_LINK_PROPS = BOOKING_URL.startsWith('http')
   ? { target: '_blank', rel: 'noreferrer' }
   : {}
 
-const BLOG_POSTS = [
+const FOUNDERS_BLOG_FEED_URL = 'https://wfs.productions/api/founders-blog.json'
+
+type BlogPost = {
+  title: string
+  description: string
+  href: string
+  date: string
+  image: string
+}
+
+const BLOG_POSTS: BlogPost[] = [
   {
     title: "I Built a Poor-Man's Enterprise AI Team on a MacBook Pro",
     description:
@@ -47,6 +57,43 @@ const BLOG_POSTS = [
       'https://substackcdn.com/image/fetch/$s_!PRsM!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F643dfa31-ff76-4745-b66f-1df34936bc64_598x401.heic',
   },
 ]
+
+function useFoundersBlogPosts() {
+  const [posts, setPosts] = useState<BlogPost[]>(BLOG_POSTS)
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadPosts() {
+      try {
+        const response = await fetch(FOUNDERS_BLOG_FEED_URL)
+        if (!response.ok) return
+
+        const payload = (await response.json()) as { posts?: BlogPost[] }
+        if (!cancelled && Array.isArray(payload.posts) && payload.posts.length > 0) {
+          setPosts(
+            payload.posts.map((post) => ({
+              title: post.title,
+              description: post.description,
+              href: post.href,
+              date: post.date,
+              image: post.image,
+            })),
+          )
+        }
+      } catch {
+        // Keep the editorial fallback list if the shared feed is unavailable.
+      }
+    }
+
+    void loadPosts()
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return posts
+}
 
 const AI_TOOLS = [
   {
@@ -444,6 +491,8 @@ function TermsPage() {
 }
 
 function BlogPage() {
+  const posts = useFoundersBlogPosts()
+
   return (
     <main id="main-content" className="landing-shell about-shell">
       <section className="landing-section">
@@ -504,7 +553,7 @@ function BlogPage() {
       </section>
 
       <section className="blog-list" aria-label="Substack posts">
-        {BLOG_POSTS.map((post) => (
+        {posts.map((post) => (
           <article key={post.href} className="blog-card">
             <a className="blog-image-link" href={post.href} aria-label={post.title}>
               <img src={post.image} alt="" />
