@@ -195,6 +195,8 @@
 .login-modal {
   position: relative;
   width: min(430px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
   border: 1px solid var(--divider);
   border-radius: var(--card-radius);
   background: var(--paper);
@@ -207,14 +209,16 @@
 }
 
 .login-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: sticky;
+  top: 0;
+  right: 0;
+  justify-self: end;
+  margin-bottom: -36px;
   width: 36px;
   min-height: 36px;
   border: 1px solid var(--divider-dark);
   border-radius: var(--btn-radius);
-  background: transparent;
+  background: var(--paper);
   color: var(--ink);
   cursor: pointer;
   font: 600 1rem/1 var(--sans);
@@ -376,10 +380,12 @@
 }
 
 .login-request-option strong {
+  display: block;
   font: 600 0.96rem/1.2 var(--sans);
 }
 
 .login-request-option span {
+  display: block;
   color: var(--secondary);
   font: 500 0.82rem/1.35 var(--sans);
 }
@@ -387,6 +393,7 @@
 .login-request-option.is-selected {
   border-width: 2px;
   border-color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
 }
 
 .login-modal-toggle-link {
