@@ -460,16 +460,53 @@ function BookingPage() {
 
 function PrivacyPage() {
   return (
-    <main id="main-content" className="landing-shell about-shell">
-      <section className="landing-section">
-        <h1 className="page-title">Privacy</h1>
+    <main id="main-content" className="landing-shell about-shell legal-shell">
+      <section className="landing-section legal-section">
+        <h1 className="page-title">WFS Productions — Privacy Policy</h1>
+        <p className="legal-updated">Last updated: July 3, 2026</p>
+
+        <h2>Who we are</h2>
         <p>
-          WFS uses contact details and meeting information only to respond to production
-          inquiries, schedule calls, and run the work you ask us to run.
+          WFS Productions (We Film Sh*t) is a commercial production company based in
+          Braintree, MA. We operate the Intelligent Production Engine platform at
+          intelligentproduction.io.
         </p>
+
+        <h2>Information we collect</h2>
+        <ul className="legal-list">
+          <li>Business contact information you provide when registering or contacting us</li>
+          <li>Usage data related to platform activity</li>
+          <li>Phone number if you opt in to SMS notifications</li>
+        </ul>
+
+        <h2>SMS Notifications Program</h2>
         <p>
-          We do not publish private client data, private production records, or internal
-          workflow material on public pages.
+          Users of Intelligent Production Engine may opt in to receive SMS notifications.
+        </p>
+        <ul className="legal-list">
+          <li>
+            How to opt in: Check the SMS notifications box in your account settings
+            inside the Intelligent Production Engine platform.
+          </li>
+          <li>
+            What you will receive: Alerts when new emails arrive in your connected
+            business inbox that require manual review.
+          </li>
+          <li>Message frequency: Varies by account activity. Up to 10 messages per month.</li>
+          <li>How to opt out: Reply STOP to any message at any time to unsubscribe immediately.</li>
+          <li>Help: Reply HELP for assistance.</li>
+          <li>Cost: Message and data rates may apply depending on your carrier plan.</li>
+          <li>
+            No sharing: We do not share your phone number with third parties for
+            marketing purposes.
+          </li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>
+          <a href="mailto:tony@wefilmshit.com">tony@wefilmshit.com</a>
+          <br />
+          WFS Productions, 17 Elmwood Park, Braintree, MA
         </p>
       </section>
     </main>
@@ -478,12 +515,102 @@ function PrivacyPage() {
 
 function TermsPage() {
   return (
-    <main id="main-content" className="landing-shell about-shell">
-      <section className="landing-section">
-        <h1 className="page-title">Terms</h1>
+    <main id="main-content" className="landing-shell about-shell legal-shell">
+      <section className="landing-section legal-section">
+        <h1 className="page-title">WFS Productions — Terms of Service</h1>
+        <p className="legal-updated">Last updated: July 3, 2026</p>
+
         <p>
-          WFS public pages are informational. Specific production services, budgets,
-          schedules, and project terms are confirmed directly with the production team.
+          By using wfs.productions or intelligentproduction.io, you agree to these terms.
+        </p>
+
+        <h2>Services</h2>
+        <p>
+          WFS Productions provides commercial production services and the Intelligent
+          Production Engine platform for ad agency producers and production companies.
+        </p>
+
+        <h2>SMS Program</h2>
+        <p>
+          If you opt in to SMS notifications through the Intelligent Production Engine,
+          you agree to receive text messages at the number you provide. Message and data
+          rates may apply. Reply STOP to unsubscribe at any time. Reply HELP for help.
+          We do not share your number with third parties for marketing.
+        </p>
+
+        <h2>Limitation of liability</h2>
+        <p>
+          WFS Productions is not liable for indirect, incidental, or consequential
+          damages arising from use of the platform.
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          We may update these terms. Continued use of the platform after changes
+          constitutes acceptance.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          <a href="mailto:tony@wefilmshit.com">tony@wefilmshit.com</a>
+        </p>
+      </section>
+    </main>
+  )
+}
+
+function SmsPage() {
+  return (
+    <main id="main-content" className="landing-shell about-shell legal-shell">
+      <section className="landing-section legal-section">
+        <h1 className="page-title">WFS Productions — SMS Notifications</h1>
+
+        <p>
+          WFS Productions (operating the Intelligent Production Engine at
+          intelligentproduction.io) sends SMS notifications to users who explicitly opt in.
+        </p>
+
+        <h2>There are two ways to opt in:</h2>
+
+        <h3>1. Via text</h3>
+        <p>
+          Text JOIN to [TOLL-FREE NUMBER] to subscribe to WFS production notifications.
+          You will receive a confirmation message. Reply STOP at any time to unsubscribe.
+        </p>
+
+        <h3>2. Via website / in-app</h3>
+        <p>
+          Log in to the Intelligent Production Engine at intelligentproduction.io. Go to
+          Account Settings and check the &quot;Enable SMS notifications&quot; box. No messages
+          are sent unless this box is checked.
+        </p>
+
+        <h2>What you will receive</h2>
+        <p>
+          Notifications when new emails arrive in your connected business inbox that
+          require manual review.
+        </p>
+
+        <p>
+          Message frequency: Up to 10 messages per month depending on account activity.
+        </p>
+
+        <h2>To opt out</h2>
+        <p>
+          Reply STOP to any message at any time. You will be immediately removed from the list.
+        </p>
+
+        <h2>Help</h2>
+        <p>
+          Reply HELP to any message, or email{' '}
+          <a href="mailto:tony@wefilmshit.com">tony@wefilmshit.com</a>.
+        </p>
+
+        <h2>Cost</h2>
+        <p>Message and data rates may apply.</p>
+
+        <p>
+          We do not sell or share your phone number with third parties for marketing purposes.
         </p>
       </section>
     </main>
@@ -578,6 +705,7 @@ function App() {
   const isBlogPage = window.location.pathname === '/blog'
   const isPrivacyPage = window.location.pathname === '/privacy'
   const isTermsPage = window.location.pathname === '/terms'
+  const isSmsPage = window.location.pathname === '/sms'
 
   return (
     <div className="page-shell">
@@ -596,6 +724,8 @@ function App() {
         <PrivacyPage />
       ) : isTermsPage ? (
         <TermsPage />
+      ) : isSmsPage ? (
+        <SmsPage />
       ) : isAboutPage ? (
         <AboutPage />
       ) : (

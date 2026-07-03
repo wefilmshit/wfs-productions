@@ -24,6 +24,8 @@ export function SiteFooter() {
         <a href="/privacy">Privacy</a>
         <span aria-hidden="true">|</span>
         <a href="/terms">Terms</a>
+        <span aria-hidden="true">|</span>
+        <a href="/sms">SMS</a>
       </p>
       <p className="footer-line footer-family-line">
         <a href="https://intelligentcreative.io">intelligentcreative.io</a>
