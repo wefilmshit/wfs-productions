@@ -1106,3 +1106,160 @@ p {
     padding-top: 4px;
   }
 }
+
+/* ------------------------------------------------------------------
+   Homepage director-search card (Intelligent Creative Engine promo).
+   Every selector below is scoped to `.home-shell` or `.director-card`,
+   so About, Tools, Join, Contact, Book, Blog and the legal pages keep
+   their existing layout untouched.
+   ------------------------------------------------------------------ */
+
+.home-shell {
+  position: relative;
+}
+
+.director-card {
+  --dc-paper: #e9e7fa;
+  --dc-indigo: #3b2fd4;
+  --dc-button: #6c5ce8;
+  --dc-button-hover: #5748d4;
+
+  position: relative;
+  width: min(304px, 100%);
+  justify-self: center;
+  margin: 18px auto 12px;
+  padding: 30px 22px 22px;
+  display: grid;
+  justify-items: center;
+  border-radius: 3px;
+  color: var(--ink);
+  background-color: var(--dc-paper);
+  background-image:
+    radial-gradient(rgba(17, 17, 17, 0.05) 0.5px, transparent 0.6px),
+    radial-gradient(circle at 20% 8%, rgba(255, 255, 255, 0.72), transparent 46%),
+    radial-gradient(circle at 86% 92%, rgba(86, 72, 214, 0.13), transparent 55%);
+  background-size: 3px 3px, auto, auto;
+  box-shadow:
+    0 16px 34px rgba(17, 17, 17, 0.14),
+    0 2px 6px rgba(17, 17, 17, 0.07);
+  transform: rotate(3deg);
+}
+
+.director-card__tape {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 78px;
+  height: 25px;
+  transform: translateX(-50%) rotate(-2.5deg);
+  background: var(--tape-image) no-repeat center / 100% 100%;
+  pointer-events: none;
+}
+
+.director-card__ask {
+  margin: 0;
+  max-width: none;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 2.7rem;
+  font-style: normal;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.director-card__ask--alt {
+  margin-top: 3px;
+  color: var(--dc-indigo);
+  font-style: italic;
+}
+
+.director-card__lead {
+  margin: 15px 0 0;
+  max-width: none;
+  color: #26262c;
+  font: 400 0.78rem/1.35 var(--sans);
+  text-align: center;
+}
+
+.director-card__logo {
+  display: block;
+  width: 86%;
+  height: auto;
+  margin: 9px 0 0;
+}
+
+.director-card__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 17px;
+  padding: 13px 14px;
+  border-radius: 5px;
+  background: var(--dc-button);
+  color: #ffffff;
+  font: 500 0.84rem/1.2 var(--sans);
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(59, 47, 212, 0.26);
+}
+
+.director-card__cta:hover {
+  background: var(--dc-button-hover);
+}
+
+.director-card__cta:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.director-card__domain {
+  margin: 9px 0 0;
+  max-width: none;
+  color: var(--dc-indigo);
+  font: 400 0.63rem/1.3 var(--sans);
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+.director-card__dots {
+  width: 100%;
+  height: 17px;
+  margin-top: 11px;
+  background-image: radial-gradient(var(--dc-indigo) 1px, transparent 1.2px);
+  background-size: 7px 7px;
+  opacity: 0.3;
+}
+
+/* Below the wide-desktop breakpoint the card stays in normal document flow as
+   the last thing on the homepage, after the WFS copy and just above the footer.
+   Tony's instruction, 2026-09-15: "can it go to the bottom not at the top for
+   mobile". The component is last in the DOM, so this needs no reordering and
+   the reading order matches what is on screen.
+
+   Wide desktop: the card lifts out of flow and sits beside the opening copy,
+   which is the approved composition.
+
+   The offset is measured from the CONTENT COLUMN, not from the viewport edge.
+   That matters: the column is centred, so its right edge moves at half the rate
+   of the viewport edge. Anchoring to the viewport (the first attempt) closed the
+   gap as the window narrowed and let the card land on the end of the manifesto
+   paragraph at 1440. Anchoring to the column keeps the gap identical at every
+   width above the breakpoint. */
+@media (min-width: 1360px) {
+  /* Reserve a homepage-only copy column so the card has genuine space rather
+     than just clearing the glyphs. Copy text is unchanged; only its measure. */
+  .home-shell .landing-section > * {
+    max-width: 700px;
+  }
+
+  .home-shell .director-card {
+    position: absolute;
+    top: 58px;
+    right: -133px;
+    width: 308px;
+    margin: 0;
+  }
+}
