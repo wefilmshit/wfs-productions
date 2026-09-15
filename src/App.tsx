@@ -2,6 +2,7 @@ import './App.css'
 import { createElement, useEffect, useRef, useState } from 'react'
 import { blackTapeLogo, wfsBudgetLogo } from './constants/assets'
 import dubayLogo from './assets/dubay-skyblue-main.png'
+import { DirectorSearchCard } from './components/DirectorSearchCard'
 import { SiteFooter } from './components/Footer'
 import { SiteNav } from './components/Nav'
 
@@ -729,10 +730,11 @@ function App() {
       ) : isAboutPage ? (
         <AboutPage />
       ) : (
-        <main id="main-content" className="landing-shell">
+        <main id="main-content" className="landing-shell home-shell">
           <Hero />
           <Manifesto />
           <ModelSection />
+          <DirectorSearchCard />
         </main>
       )}
       <SiteFooter />
